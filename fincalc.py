@@ -18,8 +18,10 @@ def calcular_aposentadoria(patrimonio_atual: float, aporte_mensal: float, anos: 
 
 if __name__ == "__main__":
     print("Iniciando o sistema FinCalc...")
+    
     patrimonio = calcular_aposentadoria(10000.0, 500.0, 20, 6.0)
     print(f"Patrimônio Estimado para Aposentadoria: R$ {patrimonio:.2f}")
+    
     montante = calcular_juros_simples(1000.0, 5.0, 2)
     print(f"Juros Simples (R$ 1.000 a 5% por 2 anos): R$ {montante:.2f}")
 
