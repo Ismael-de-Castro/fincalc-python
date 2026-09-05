@@ -5,12 +5,17 @@ def calcular_juros_simples(capital: float, taxa_anual: float, anos: int) -> floa
     juros = capital * (taxa_anual / 100) * anos
     return capital + juros
 
+
 def calcular_juros_compostos(capital: float, taxa_anual: float, anos: int) -> float:
     """Calcula o montante final obtido por juros compostos."""
     montante = capital * ((1 + (taxa_anual / 100)) ** anos)
     return montante
 
-def calcular_aposentadoria(patrimonio_atual: float, aporte_mensal: float, anos: int, taxa_anual: float) -> float:
+
+def calcular_aposentadoria(
+        patrimonio_atual: float, aporte_mensal: float,
+        anos: int, taxa_anual: float
+) -> float:
     """Calcula o patrimônio acumulado para aposentadoria."""
     meses = anos * 12
     taxa_mensal = (taxa_anual / 100) / 12
