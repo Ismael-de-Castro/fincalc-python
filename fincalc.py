@@ -39,7 +39,10 @@ if __name__ == "__main__":
 
 # Cálculo de Amortização Price (Maria Clara)
 
-def calcular_parcela_price(valor_emprestimo: float, taxa_mensal: float, meses: int) -> float:
+
+def calcular_parcela_price(
+    valor_emprestimo: float, taxa_mensal: float, meses: int
+) -> float:
     """Calcula o valor da parcela fixa em um financiamento pela Tabela Price."""
     i = taxa_mensal / 100
     parcela = valor_emprestimo * (i * ((1 + i) ** meses)) / (((1 + i) ** meses) - 1)
