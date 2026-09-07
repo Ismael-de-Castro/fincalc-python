@@ -18,10 +18,7 @@ def calcular_juros_compostos(
 
 
 def calcular_aposentadoria(
-    patrimonio_atual: float,
-    aporte_mensal: float,
-    anos: int,
-    taxa_anual: float,
+    patrimonio_atual: float, aporte_mensal: float, anos: int, taxa_anual: float
 ) -> float:
     """Calcula o patrimônio acumulado para aposentadoria."""
     meses = anos * 12
@@ -53,6 +50,17 @@ def calcular_irrf(salario_bruto: float) -> float:
         return (salario_bruto * 0.225) - 662.77
 
 
+def calcular_parcela_price(
+    valor_emprestimo: float, taxa_mensal: float, meses: int
+) -> float:
+    """Calcula o valor da parcela fixa em um financiamento pela Tabela Price."""
+    i = taxa_mensal / 100
+    parcela = (
+        valor_emprestimo * (i * ((1 + i) ** meses)) / (((1 + i) ** meses) - 1)
+    )
+    return parcela
+
+
 if __name__ == "__main__":
     print("Iniciando o sistema FinCalc...")
 
@@ -68,5 +76,11 @@ if __name__ == "__main__":
     vf = calcular_valor_futuro(500.0, 1.0, 12)
     print(f"Valor Futuro (R$ 500/mês a 1% por 12 meses): R$ {vf:.2f}")
 
-    irrf = calcular_irrf(3000.0)
-    print(f"IRRF (Salário R$ 3.000,00): R$ {irrf:.2f}")
+    imposto = calcular_irrf(3000.0)
+    print(f"IRRF Estimado (Salário R$ 3.000,00): R$ {imposto:.2f}")
+
+    parcela = calcular_parcela_price(10000.0, 1.5, 12)
+    print(
+        "Parcela Tabela Price (R$ 10.000 a 1,5% a.m. em 12x): "
+        f"R$ {parcela:.2f}"
+    )
