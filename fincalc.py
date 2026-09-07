@@ -61,6 +61,11 @@ def calcular_parcela_price(
     return parcela
 
 
+def calcular_depreciacao_linear(valor_inicial: float, valor_residual: float, vida_util_anos: int) -> float:
+    """Calcula o valor de depreciação anual de um ativo corporativo."""
+    return (valor_inicial - valor_residual) / vida_util_anos
+
+
 if __name__ == "__main__":
     print("Iniciando o sistema FinCalc...")
 
@@ -84,3 +89,6 @@ if __name__ == "__main__":
         "Parcela Tabela Price (R$ 10.000 a 1,5% a.m. em 12x): "
         f"R$ {parcela:.2f}"
     )
+
+    valor_depreciacao = calcular_depreciacao_linear(10000.0, 2000.0, 5)
+    print(f"Depreciação Anual Calculada: R$ {valor_depreciacao:.2f}")
