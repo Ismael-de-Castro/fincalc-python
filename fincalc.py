@@ -29,6 +29,15 @@ def calcular_aposentadoria(
     return saldo
 
 
+def calcular_valor_futuro(
+    aporte_mensal: float, taxa_mensal: float, meses: int
+) -> float:
+    """Calcula o valor futuro acumulado com aportes mensais recorrentes."""
+    i = taxa_mensal / 100
+    vf = aporte_mensal * (((1 + i) ** meses - 1) / i)
+    return vf
+
+
 def calcular_irrf(salario_bruto: float) -> float:
     """Calcula a alíquota simplificada de Imposto de Renda Retido na Fonte."""
     if salario_bruto <= 2259.20:
@@ -63,6 +72,9 @@ if __name__ == "__main__":
 
     patrimonio = calcular_aposentadoria(10000.0, 500.0, 20, 6.0)
     print(f"Patrimônio Estimado para Aposentadoria: R$ {patrimonio:.2f}")
+
+    vf = calcular_valor_futuro(500.0, 1.0, 12)
+    print(f"Valor Futuro (R$ 500/mês a 1% por 12 meses): R$ {vf:.2f}")
 
     imposto = calcular_irrf(3000.0)
     print(f"IRRF Estimado (Salário R$ 3.000,00): R$ {imposto:.2f}")
