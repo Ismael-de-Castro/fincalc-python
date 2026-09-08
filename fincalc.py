@@ -61,7 +61,8 @@ def calcular_parcela_price(
     return parcela
 
 
-def calcular_depreciacao_linear(valor_inicial: float, valor_residual: float, vida_util_anos: int) -> float:
+def calcular_depreciacao_linear(valor_inicial:
+     float, valor_residual: float, vida_util_anos: int) -> float:
     """Calcula o valor de depreciação anual de um ativo corporativo."""
     return (valor_inicial - valor_residual) / vida_util_anos
 
