@@ -62,7 +62,7 @@ def calcular_parcela_price(
 
 
 def calcular_depreciacao_linear(valor_inicial:
-     float, valor_residual: float, vida_util_anos: int) -> float:
+float, valor_residual: float, vida_util_anos: int) -> float:
     """Calcula o valor de depreciação anual de um ativo corporativo."""
     return (valor_inicial - valor_residual) / vida_util_anos
 
@@ -93,3 +93,4 @@ if __name__ == "__main__":
 
     valor_depreciacao = calcular_depreciacao_linear(10000.0, 2000.0, 5)
     print(f"Depreciação Anual Calculada: R$ {valor_depreciacao:.2f}")
+    
