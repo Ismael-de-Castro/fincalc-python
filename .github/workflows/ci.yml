@@ -33,3 +33,16 @@ jobs:
 
     - name: Executar Linter de Segurança (Bandit)
       run: bandit -r fincalc.py
+      
+      deploy:
+    needs: lint
+    runs-on: self-hosted
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Implantar Servidor de Produção
+        run: |
+          mkdir -p /tmp/servidor_producao_fincalc
+          rsync -av --exclude='actions-runner' --exclude='.git' ./ /tmp/servidor_producao_fincalc/
+          echo "Deploy efetuado com sucesso!"
