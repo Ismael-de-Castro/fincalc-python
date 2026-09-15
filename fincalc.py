@@ -17,7 +17,7 @@ def calcular_juros_compostos(
         raise ValueError("O capital inicial não pode ser negativo.")
     if anos < 0:
         raise ValueError("O tempo em anos não pode ser negativo.")
-        
+
     montante = capital * ((1 + (taxa_anual / 100)) ** anos)
     return montante
 
