@@ -1,29 +1,20 @@
 # FinCalc - Sistema de Cálculos Financeiros em Python
 
-
-def calcular_juros_simples(
-    capital: float, taxa_anual: float, anos: int
-) -> float:
+def calcular_juros_simples(capital: float, taxa_anual: float, anos: int) -> float:
     """Calcula o montante final obtido por juros simples."""
     juros = capital * (taxa_anual / 100) * anos
     return capital + juros
 
 
-def calcular_juros_compostos(
-    capital: float, taxa_anual: float, anos: int
-) -> float:
+def calcular_juros_compostos(capital: float, taxa_anual: float, anos: int) -> float:
     """Calcula o montante final obtido por juros compostos."""
-    if capital < 0:
-        raise ValueError("O capital inicial não pode ser negativo.")
-    if anos < 0:
-        raise ValueError("O tempo em anos não pode ser negativo.")
-
     montante = capital * ((1 + (taxa_anual / 100)) ** anos)
     return montante
 
 
 def calcular_aposentadoria(
-    patrimonio_atual: float, aporte_mensal: float, anos: int, taxa_anual: float
+        patrimonio_atual: float, aporte_mensal: float,
+        anos: int, taxa_anual: float
 ) -> float:
     """Calcula o patrimônio acumulado para aposentadoria."""
     meses = anos * 12
@@ -89,17 +80,15 @@ if __name__ == "__main__":
     patrimonio = calcular_aposentadoria(10000.0, 500.0, 20, 6.0)
     print(f"Patrimônio Estimado para Aposentadoria: R$ {patrimonio:.2f}")
 
-    vf = calcular_valor_futuro(500.0, 1.0, 12)
-    print(f"Valor Futuro (R$ 500/mês a 1% por 12 meses): R$ {vf:.2f}")
 
-    imposto = calcular_irrf(3000.0)
-    print(f"IRRF Estimado (Salário R$ 3.000,00): R$ {imposto:.2f}")
+def calcular_irrf(salario_bruto: float) -> float:
+    """Calcula a alíquota simplificada de Imposto de Renda Retido na Fonte."""
+    if salario_bruto < 0:
+        raise ValueError("Salário não pode ser negativo")
 
-    parcela = calcular_parcela_price(10000.0, 1.5, 12)
-    print(
-        "Parcela Tabela Price (R$ 10.000 a 1,5% a.m. em 12x): "
-        f"R$ {parcela:.2f}"
-    )
+    if salario_bruto <= 2259.20:
+        return 0.0
+    elif salario_bruto <= 2826.65:
+        return (salario_bruto * 0.075) - 169.44
 
-    valor_depreciacao = calcular_depreciacao_linear(10000.0, 2000.0, 5)
-    print(f"Depreciação Anual Calculada: R$ {valor_depreciacao:.2f}")
+    return 0.0
