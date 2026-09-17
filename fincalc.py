@@ -28,6 +28,49 @@ def calcular_aposentadoria(
     return saldo
 
 
+def calcular_valor_futuro(
+    aporte_mensal: float, taxa_mensal: float, meses: int
+) -> float:
+    """Calcula o valor futuro acumulado com aportes mensais recorrentes."""
+    i = taxa_mensal / 100
+    vf = aporte_mensal * (((1 + i) ** meses - 1) / i)
+    return vf
+
+
+def calcular_irrf(salario_bruto: float) -> float:
+    """Calcula a alíquota simplificada de Imposto de Renda Retido na Fonte."""
+    if salario_bruto <= 2259.20:
+        return 0.0
+    elif salario_bruto <= 2826.65:
+        return (salario_bruto * 0.075) - 169.44
+    elif salario_bruto <= 3751.05:
+        return (salario_bruto * 0.15) - 381.44
+    else:
+        return (salario_bruto * 0.225) - 662.77
+
+
+def calcular_parcela_price(
+    valor_emprestimo: float, taxa_mensal: float, meses: int
+) -> float:
+    # Validação de entradas inválidas
+    if valor_emprestimo <= 0 or meses <= 0 or taxa_mensal < 0:
+        raise ValueError("O valor do empréstimo e os meses devem ser maiores que zero.")
+    # Caso limite: Taxa de juros nula (divisão direta)
+    if taxa_mensal == 0:
+        return valor_emprestimo / meses
+    # Cálculo padrão da Tabela Price
+    i = taxa_mensal / 100
+    parcela = valor_emprestimo * (i * (1 + i) ** meses) / (((1 + i) ** meses) - 1)
+    return parcela
+
+
+def calcular_depreciacao_linear(
+    valor_inicial: float, valor_residual: float, vida_util_anos: int
+) -> float:
+    """Calcula o valor de depreciação anual de um ativo corporativo."""
+    return (valor_inicial - valor_residual) / vida_util_anos
+
+
 if __name__ == "__main__":
     print("Iniciando o sistema FinCalc...")
 
