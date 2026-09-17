@@ -8,9 +8,12 @@ def calcular_juros_simples(capital: float, taxa_anual: float, anos: int) -> floa
 
 def calcular_juros_compostos(capital: float, taxa_anual: float, anos: int) -> float:
     """Calcula o montante final obtido por juros compostos."""
+    if capital < 0:
+        raise ValueError("Capital não pode ser negativo")
+    if anos < 0:
+        raise ValueError("Tempo não pode ser negativo")
     montante = capital * ((1 + (taxa_anual / 100)) ** anos)
     return montante
-
 
 def calcular_aposentadoria(
         patrimonio_atual: float, aporte_mensal: float,
