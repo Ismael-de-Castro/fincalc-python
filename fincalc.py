@@ -11,16 +11,9 @@ def calcular_juros_compostos(
 ) -> float:
     """Calcula o montante final obtido por juros compostos."""
     if capital < 0:
-<<<<<<< Updated upstream
         raise ValueError("Capital não pode ser negativo")
     if anos < 0:
         raise ValueError("Tempo não pode ser negativo")
-=======
-        raise ValueError("O capital inicial não pode ser negativo.")
-    if anos < 0:
-        raise ValueError("O tempo em anos não pode ser negativo.")
-
->>>>>>> Stashed changes
     montante = capital * ((1 + (taxa_anual / 100)) ** anos)
     return montante
 
